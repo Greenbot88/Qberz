@@ -649,13 +649,17 @@ export default function App() {
             </button>
 
             {/* Footer Elements inside Section 20 */}
-            <div className="w-full mt-16 pt-8 border-t border-white/5 grid grid-cols-2 gap-4 font-mono text-[9px] tracking-wider text-brand-muted text-left">
-              <div className="flex flex-col gap-1.5">
-                <span>SECURE@INQBERZ.SEC</span>
-                <span>GENEVA / CH</span>
-                <span>LINKEDIN/INQBERZ</span>
+            <div className="w-full mt-16 pt-8 border-t border-white/5 grid grid-cols-1 sm:grid-cols-2 gap-6 font-mono text-[9px] tracking-wider text-brand-muted text-left">
+              <div className="flex flex-col gap-2">
+                <span className="text-white">
+                  <a href="mailto:info@inqberz.com" className="interactive-target hover:text-brand-cyan transition-colors">info@inqberz.com</a>
+                </span>
+                <span className="leading-relaxed max-w-xs">
+                  33/1, 4th Floor, Vittal Mallya Road,<br />
+                  Bangalore, Karnataka, India - 560001
+                </span>
               </div>
-              <div className="flex flex-col gap-1.5 text-right">
+              <div className="flex flex-col gap-1.5 sm:text-right justify-end">
                 <span>SHA-256: 9E:2D:A5...</span>
                 <span>VERSION: v01.2035</span>
                 <span>BUILD: #C399A2</span>
