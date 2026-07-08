@@ -1,0 +1,6 @@
+{
+  "name": "INQBERZ",
+  "description": "AI • Cybersecurity • Quantum — We protect what nobody knows exists.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
