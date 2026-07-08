@@ -24,6 +24,7 @@ import TypewriterIntro from './components/TypewriterIntro';
 import SignalsInteractive from './components/SignalsInteractive';
 import VaultUnlockModal from './components/VaultUnlockModal';
 import ScrollIndicator from './components/ScrollIndicator';
+import Logo from './components/Logo';
 
 export default function App() {
   const [introPassed, setIntroPassed] = useState(false);
@@ -31,9 +32,28 @@ export default function App() {
   const [glitchActive, setGlitchActive] = useState(false);
   const [vaultOpen, setVaultOpen] = useState(false);
   const [hoveredIconText, setHoveredIconText] = useState<string | null>(null);
+  const [utcTime, setUtcTime] = useState('');
 
   const isScrollingRef = useRef(false);
   const touchStartYRef = useRef(0);
+
+  // Dynamic UTC timeline clock
+  useEffect(() => {
+    const updateUtcTime = () => {
+      const now = new Date();
+      const year = now.getUTCFullYear();
+      const month = String(now.getUTCMonth() + 1).padStart(2, '0');
+      const day = String(now.getUTCDate()).padStart(2, '0');
+      const hours = String(now.getUTCHours()).padStart(2, '0');
+      const minutes = String(now.getUTCMinutes()).padStart(2, '0');
+      const seconds = String(now.getUTCSeconds()).padStart(2, '0');
+      setUtcTime(`${year}.${month}.${day} @ ${hours}:${minutes}:${seconds} UTC`);
+    };
+
+    updateUtcTime();
+    const interval = setInterval(updateUtcTime, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   // Transition to next/prev sections with brief screen glitch
   const triggerTransition = (newIndex: number) => {
@@ -606,9 +626,14 @@ export default function App() {
         return (
           <div className="flex flex-col items-center justify-center text-center px-6 max-w-xl w-full">
             {/* Final Logo */}
-            <h2 className="font-heading font-extrabold text-5xl md:text-6xl tracking-[0.3em] text-white uppercase glitch-text" data-text="INQBERZ">
-              INQBERZ
-            </h2>
+            <Logo 
+              showText={true} 
+              textSizeClass="text-4xl md:text-5xl lg:text-6xl" 
+              iconSize={68} 
+              textTrackingClass="tracking-[0.3em]"
+              glitchEffect={true}
+              className="mb-4"
+            />
             
             <p className="font-sans font-light text-base md:text-lg text-brand-muted mt-6 mb-8 leading-relaxed">
               Some conversations shouldn't happen over email.
@@ -645,7 +670,7 @@ export default function App() {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#050505] text-white flex flex-col justify-between overflow-hidden">
+    <div className="relative min-h-screen bg-[#0D0D0D] text-white flex flex-col justify-between overflow-hidden">
       
       {/* Glitch Overlay effects */}
       {glitchActive && (
@@ -670,11 +695,9 @@ export default function App() {
       />
 
       {/* Top logo watermark showing the timeline focus */}
-      <header className="fixed top-6 left-6 z-40 flex items-center gap-2">
-        <span className="font-heading font-extrabold text-base tracking-[0.2em] text-white">
-          INQBERZ
-        </span>
-        <div className="w-1.5 h-1.5 rounded-full bg-brand-cyan animate-ping" />
+      <header className="fixed top-5 left-5 z-40 flex items-center gap-2">
+        <Logo showText={true} textSizeClass="text-sm font-semibold" iconSize={24} textTrackingClass="tracking-[0.2em]" />
+        <div className="w-1.5 h-1.5 rounded-full bg-brand-cyan animate-ping self-center" />
       </header>
 
       {/* Central narrative viewport */}
@@ -695,7 +718,7 @@ export default function App() {
 
       {/* Bottom status markers */}
       <footer className="fixed bottom-6 left-6 z-40 font-mono text-[8px] tracking-[0.25em] text-brand-muted hidden sm:flex items-center gap-4">
-        <span>UTC TIMELINE: 2035.07</span>
+        <span>UTC TIMELINE: {utcTime}</span>
         <span className="opacity-30">•</span>
         <span>INDEX: {scrollIndex.toString().padStart(2, '0')} / 20</span>
         {scrollIndex < 20 && (

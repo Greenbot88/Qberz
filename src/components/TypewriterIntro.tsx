@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Terminal } from 'lucide-react';
+import Logo from './Logo';
 
 interface TypewriterIntroProps {
   onEnter: () => void;
@@ -134,7 +135,7 @@ export default function TypewriterIntro({ onEnter }: TypewriterIntroProps) {
     phase !== 'fade_out_all';
 
   return (
-    <div className="relative flex h-screen w-screen items-center justify-center bg-[#050505] overflow-hidden select-none">
+    <div className="relative flex h-screen w-screen items-center justify-center bg-[#0D0D0D] overflow-hidden select-none">
       
       {/* Decorative vertical/horizontal scanning grid lines to make it cinematic */}
       <div className="absolute inset-0 bg-grid opacity-20 pointer-events-none" />
@@ -173,15 +174,20 @@ export default function TypewriterIntro({ onEnter }: TypewriterIntroProps) {
             transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1] }}
             className="flex flex-col items-center justify-center text-center px-4"
           >
-            {/* INQBERZ logo with dynamic tracking letters */}
+            {/* INQBERZ logo with dynamic tracking letters and SVG vector branding */}
             <motion.div
-              initial={{ letterSpacing: '0.4em' }}
-              animate={{ letterSpacing: '0.8em' }}
+              initial={{ letterSpacing: '0.4em', y: -10, opacity: 0 }}
+              animate={{ letterSpacing: '0.8em', y: 0, opacity: 1 }}
               transition={{ duration: 4, ease: "easeOut" }}
-              className="text-5xl md:text-7xl lg:text-8xl font-heading font-extrabold text-white tracking-[0.6em] relative glitch-text"
-              data-text="INQBERZ"
+              className="flex justify-center items-center"
             >
-              INQBERZ
+              <Logo 
+                showText={true} 
+                textSizeClass="text-4xl md:text-6xl lg:text-7xl font-extrabold" 
+                iconSize={80}
+                textTrackingClass="tracking-[0.4em]"
+                glitchEffect={true}
+              />
             </motion.div>
 
             {/* Glowing horizontal divider bar */}

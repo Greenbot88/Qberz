@@ -75,14 +75,14 @@ export default function CursorOrb() {
         animate={{
           scale: isHovered ? (isClicking ? 1.4 : 1.8) : (isClicking ? 0.75 : 1),
           borderColor: isHovered 
-            ? 'rgba(0, 245, 255, 0.8)' 
-            : 'rgba(109, 93, 253, 0.3)',
+            ? 'rgba(242, 82, 96, 0.8)' 
+            : 'rgba(102, 20, 217, 0.3)',
           backgroundColor: isHovered 
-            ? 'rgba(0, 245, 255, 0.08)' 
-            : 'rgba(109, 93, 253, 0.02)',
+            ? 'rgba(242, 82, 96, 0.08)' 
+            : 'rgba(102, 20, 217, 0.02)',
           boxShadow: isHovered 
-            ? '0 0 20px rgba(0, 245, 255, 0.3)' 
-            : '0 0 10px rgba(109, 93, 253, 0.1)',
+            ? '0 0 20px rgba(242, 82, 96, 0.3)' 
+            : '0 0 10px rgba(102, 20, 217, 0.1)',
         }}
         transition={{
           type: 'spring',
@@ -95,8 +95,8 @@ export default function CursorOrb() {
         <div 
           className={`absolute inset-0 m-auto rounded-full transition-all duration-300 ${
             isHovered 
-              ? 'h-1 w-1 bg-brand-cyan scale-150 shadow-[0_0_8px_#00F5FF]' 
-              : 'h-2 w-2 bg-brand-violet shadow-[0_0_4px_#6D5DFD]'
+              ? 'h-1 w-1 bg-brand-cyan scale-150 shadow-[0_0_8px_#F25260]' 
+              : 'h-2 w-2 bg-brand-violet shadow-[0_0_4px_#6614D9]'
           }`} 
         />
         {isHovered && (

@@ -39,7 +39,7 @@ export default function CanvasBackground({ scrollIndex, glitchActive }: CanvasBa
         vx: (Math.random() - 0.5) * 0.4,
         vy: (Math.random() - 0.5) * 0.4,
         radius: Math.random() * 2 + 0.5,
-        color: i % 10 === 0 ? '#00F5FF' : i % 15 === 0 ? '#6D5DFD' : '#ffffff',
+        color: i % 10 === 0 ? '#F25260' : i % 15 === 0 ? '#6614D9' : '#ffffff',
       });
     }
 
@@ -87,7 +87,7 @@ export default function CanvasBackground({ scrollIndex, glitchActive }: CanvasBa
       mouseRef.current.y += (mouseRef.current.targetY - mouseRef.current.y) * 0.08;
 
       // Dark movie background
-      ctx.fillStyle = '#050505';
+      ctx.fillStyle = '#0D0D0D';
       ctx.fillRect(0, 0, width, height);
 
       // Draw grid lines
@@ -118,8 +118,8 @@ export default function CanvasBackground({ scrollIndex, glitchActive }: CanvasBa
           width * 0.4
         );
         // Soft violet/cyan hue that fades out completely
-        gradient.addColorStop(0, 'rgba(109, 93, 253, 0.045)');
-        gradient.addColorStop(0.5, 'rgba(0, 245, 255, 0.015)');
+        gradient.addColorStop(0, 'rgba(102, 20, 217, 0.045)');
+        gradient.addColorStop(0.5, 'rgba(242, 82, 96, 0.015)');
         gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
         ctx.fillStyle = gradient;
         ctx.fillRect(0, 0, width, height);
@@ -185,9 +185,9 @@ export default function CanvasBackground({ scrollIndex, glitchActive }: CanvasBa
           ctx.beginPath();
           // Mix violet, cyan, red and white
           const colors = [
-            'rgba(0, 245, 255, 0.06)',
-            'rgba(109, 93, 253, 0.06)',
-            'rgba(255, 59, 92, 0.04)',
+            'rgba(242, 82, 96, 0.06)',
+            'rgba(102, 20, 217, 0.06)',
+            'rgba(242, 80, 65, 0.04)',
             'rgba(255, 255, 255, 0.03)'
           ];
           ctx.strokeStyle = colors[w % colors.length];
@@ -244,7 +244,7 @@ export default function CanvasBackground({ scrollIndex, glitchActive }: CanvasBa
               const dx = mouseRef.current.x - px;
               const dy = mouseRef.current.y - py;
               if (Math.hypot(dx, dy) < 120) {
-                ctx.strokeStyle = `rgba(0, 245, 255, ${alpha * 0.15})`;
+                ctx.strokeStyle = `rgba(242, 82, 96, ${alpha * 0.15})`;
                 ctx.lineWidth = 0.5;
                 ctx.beginPath();
                 ctx.moveTo(px, py);
@@ -269,7 +269,7 @@ export default function CanvasBackground({ scrollIndex, glitchActive }: CanvasBa
             ctx.drawImage(canvas, 0, gy, width, gh, gShift, gy, width, gh);
 
             // Add chromatic color filters over them
-            ctx.fillStyle = Math.random() > 0.5 ? 'rgba(0, 245, 255, 0.15)' : 'rgba(255, 59, 92, 0.15)';
+            ctx.fillStyle = Math.random() > 0.5 ? 'rgba(242, 82, 96, 0.15)' : 'rgba(242, 80, 65, 0.15)';
             ctx.fillRect(0, gy, width, gh);
           }
         }
